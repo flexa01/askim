@@ -2,34 +2,54 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Veda...</title>
+    <title>SON SÖZ</title>
     <style>
         body { margin: 0; background-color: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: 'Arial', sans-serif; }
-        .content { text-align: center; z-index: 10; position: relative; }
-        h1 { color: #ff69b4; font-size: 85px; margin: 0; text-shadow: 0 0 25px #ff1493; }
-        p { color: #ffb6c1; font-size: 28px; margin-top: 15px; font-weight: bold; }
-        .vurgu { color: #ff1493; font-size: 24px; margin-top: 10px; font-style: italic; text-transform: uppercase; letter-spacing: 2px; }
+        .content { text-align: center; z-index: 10; position: relative; max-width: 600px; padding: 20px; }
+        h1 { color: #ff69b4; font-size: 80px; margin: 0; text-shadow: 0 0 25px #ff1493; }
+        .kutlama { color: #ffb6c1; font-size: 26px; margin-top: 10px; font-weight: bold; }
+        .basari { color: #ff1493; font-size: 22px; margin-top: 5px; font-style: italic; text-transform: uppercase; }
+        
+        /* Eklediğimiz o son paragraf */
+        .paragraf { 
+            color: #ffffff; 
+            font-size: 18px; 
+            line-height: 1.6; 
+            margin-top: 30px; 
+            opacity: 0.9; 
+            font-weight: 300;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
     </style>
 </head>
 <body>
 
     <div class="content">
         <h1>H ❤️ I</h1>
-        <p>2. Yılımız Kutlu Olsun</p>
-        <p class="vurgu">Yeni Sevgilinle Başarılar Sonsuza Kadar.</p>
+        <p class="kutlama">2. Yılımız Kutlu Olsun</p>
+        <p class="basari">Yeni sevgilinle başarılar sonsuza kadar.</p>
+        
+        <div class="paragraf">
+            Bazen en güzel hikayeler, en beklenmedik anlarda son bulur. 
+            İki yılın her anı, her hatırası bu siyah ekranda patlayan havai fişekler gibiydi; 
+            parlak, heyecan verici ama geçici. Bu bir veda değil, 
+            kendi içinde tamamlanmış bir hikayenin son cümlesi. 
+            Her şeyin bittiği yerde, yeni başlangıçların gölgesinde kalmak yerine, 
+            bu finali kendi ellerimizle yazıyoruz. Yolun açık olsun.
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // Havai fişekler bu son veda için patlamaya devam etsin
         setInterval(() => {
             confetti({
-                particleCount: 50,
-                spread: 100,
-                origin: { y: 0.6 },
+                particleCount: 40,
+                spread: 80,
+                origin: { y: 0.7 },
                 colors: ['#ff69b4', '#ff1493', '#ffffff']
             });
-        }, 1500);
+        }, 2000);
     </script>
 </body>
 </html>
