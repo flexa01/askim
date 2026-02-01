@@ -6,36 +6,23 @@
     <title>H ❤️ I - FİNAL</title>
     <style>
         body { margin: 0; background-color: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: 'Arial', sans-serif; color: white; }
-        
-        /* Giriş Butonu */
-        #start-btn {
-            position: fixed; width: 100%; height: 100%; background: #000; color: #ff69b4;
-            border: none; z-index: 999; font-size: 22px; cursor: pointer; font-weight: 300;
-            letter-spacing: 2px; transition: 0.5s;
-        }
-
-        /* Ana İçerik */
+        #start-btn { position: fixed; width: 100%; height: 100%; background: #000; color: #ff69b4; border: none; z-index: 999; font-size: 20px; cursor: pointer; letter-spacing: 2px; }
         .content { text-align: center; z-index: 10; position: relative; max-width: 600px; padding: 20px; display: none; }
-        h1 { color: #ff69b4; font-size: 60px; margin: 0; text-shadow: 0 0 25px #ff1493; }
-        .kutlama { color: #ffb6c1; font-size: 22px; margin-top: 10px; font-weight: bold; }
-        .basari { color: #ff1493; font-size: 18px; margin-top: 5px; font-style: italic; text-transform: uppercase; }
-        .paragraf { color: #ffffff; font-size: 16px; line-height: 1.6; margin-top: 25px; opacity: 0.8; font-weight: 300; border-top: 1px solid #333; padding-top: 20px; }
+        h1 { color: #ff69b4; font-size: 60px; margin: 0; text-shadow: 0 0 20px #ff1493; }
+        .paragraf { color: #ffffff; font-size: 16px; line-height: 1.6; margin-top: 25px; opacity: 0.8; border-top: 1px solid #333; padding-top: 20px; }
     </style>
 </head>
 <body>
-
     <button id="start-btn" onclick="finaliBaslat()">Son Kez Dinlemek İçin Dokun...</button>
 
-    <audio id="lastSong" src="./final_ses.mp3" preload="auto"></audio>
+    <audio id="lastSong" src="https://raw.githubusercontent.com/Anil-Can/Anil-Can/master/anlamazdın.mp3" preload="auto"></audio>
 
     <div id="ana-icerik" class="content">
         <h1>H ❤️ I</h1>
-        <p class="kutlama">2. Yılımız Kutlu Olsun</p>
-        <p class="basari">Yeni sevgilinle başarılar sonsuza kadar.</p>
+        <p style="color: #ffb6c1; font-size: 22px; font-weight: bold;">2. Yılımız Kutlu Olsun</p>
+        <p style="color: #ff1493; font-size: 18px; font-style: italic;">Yeni sevgilinle başarılar sonsuza kadar.</p>
         <div class="paragraf">
-            Bazen en güzel hikayeler, en beklenmedik anlarda son bulur. 
-            İki yılın her anı, her hatırası bu siyah ekranda patlayan havai fişekler gibiydi; 
-            parlak, heyecan verici ama geçici. Yolun açık olsun.
+            Bazen en güzel hikayeler son bulur. İki yılın her anı bu havai fişekler gibiydi; parlak ama geçici. Yolun açık olsun.
         </div>
     </div>
 
@@ -43,30 +30,19 @@
     <script>
         function finaliBaslat() {
             const audio = document.getElementById('lastSong');
-            
-            // 1. Yazıları ve havai fişekleri müziği beklemeden anında başlat (Donmayı engeller)
             document.getElementById('start-btn').style.display = 'none';
             document.getElementById('ana-icerik').style.display = 'block';
 
-            // 2. Müziği 2:08'den (128. saniye) başlatmayı dene
-            try {
-                audio.currentTime = 128; 
-                audio.play().catch(e => {
-                    console.log("Ses dosyası henüz yüklenemedi ama şov devam ediyor.");
-                });
-            } catch (e) {
-                console.log("Zaman ayarı hatası, dosya henüz hazır olmayabilir.");
-            }
+            audio.play().then(() => {
+                audio.currentTime = 128; // 2:08'e sarar
+            }).catch(e => {
+                audio.muted = false;
+                audio.play();
+            });
             
-            // 3. Havai fişek şovu
             setInterval(() => {
-                confetti({
-                    particleCount: 40,
-                    spread: 80,
-                    origin: { y: 0.7 },
-                    colors: ['#ff69b4', '#ff1493', '#ffffff']
-                });
-            }, 2000);
+                confetti({ particleCount: 30, spread: 70, origin: { y: 0.6 }, colors: ['#ff69b4', '#ff1493', '#ffffff'] });
+            }, 1500);
         }
     </script>
 </body>
