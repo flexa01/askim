@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2. Yılımız Kutlu Olsun!</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        canvas { position: absolute; top: 0; left: 0; z-index: 1; }
+        
+        .container {
+            text-align: center;
+            z-index: 2;
+            opacity: 0; /* Başlangıçta gizli */
+            transition: opacity 2s ease-in; /* Yavaşça belirmesi için */
+        }
+        
+        h1 { color: #ff69b4; font-size: 80px; margin: 0; text-shadow: 0 0 20px #ff1493; }
+        p { color: #ffb6c1; font-size: 26px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="content">
+        <h1>H ❤️ I</h1>
+        <p>2. Yılımız Kutlu Olsun</p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        const content = document.getElementById('content');
+        
+        // 1. Önce havai fişekler başlasın
+        function launchFireworks() {
+            const end = Date.now() + (3 * 1000); // 3 saniye boyunca yoğun patlama
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
