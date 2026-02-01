@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H ❤️ I - Final</title>
+    <title>H ❤️ I - Veda</title>
     <style>
         body { margin: 0; background-color: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: 'Arial', sans-serif; color: white; }
         #start-btn { position: fixed; width: 100%; height: 100%; background: #000; color: #ff69b4; border: none; z-index: 999; font-size: 22px; cursor: pointer; letter-spacing: 2px; }
@@ -12,13 +12,16 @@
         .kutlama { color: #ffb6c1; font-size: 22px; margin-top: 10px; font-weight: bold; }
         .basari { color: #ff1493; font-size: 18px; margin-top: 5px; font-style: italic; }
         .paragraf { color: #ffffff; font-size: 17px; line-height: 1.6; margin-top: 25px; opacity: 0.9; border-top: 1px solid #333; padding-top: 20px; }
-        #player { display: none; }
+        #player { position: absolute; top: -1000px; left: -1000px; } /* Görünmez yap ama var olsun */
     </style>
 </head>
 <body>
 
     <button id="start-btn" onclick="baslat()">Son Kez Dinlemek İçin Dokun...</button>
-    <div id="player"></div>
+    
+    <iframe id="player" width="10" height="10" 
+        src="https://www.youtube.com/embed/yOfrJ_Jnqyw?enablejsapi=1&autoplay=0" 
+        frameborder="0" allow="autoplay"></iframe>
 
     <div id="ana-icerik" class="content">
         <h1>H ❤️ I</h1>
@@ -26,35 +29,4 @@
         <p class="basari">Yeni sevgilinle başarılar sonsuza kadar.</p>
         <div class="paragraf">
             "Bir iskambil falında çıkmıştık birbirimize... <br>
-            O güzel kupa kızıydı, sinek valesiydim bense." <br><br>
-            İki yılın her anı bu şarkı gibiydi. Kendine iyi bak seni seviyorum.
-        </div>
-    </div>
-
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script>
-        let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0', width: '0',
-                videoId: 'yOfrJ_Jnqyw', // Teoman - Kupa Kızı Sinek Valesi
-                events: { 'onReady': onPlayerReady }
-            });
-        }
-        function onPlayerReady(event) { console.log("Müzik Hazır"); }
-
-        function baslat() {
-            document.getElementById('start-btn').style.display = 'none';
-            document.getElementById('ana-icerik').style.display = 'block';
-            
-            if (player && player.playVideo) {
-                player.setVolume(100);
-                player.playVideo();
-            }
-
-            setInterval(() => {
-                confetti({
-                    particleCount: 40,
-                    spread: 80,
-                    origin: { y:
+            O güzel kupa kızıydı, sinek valesiydim bense. İki yılımız bu şarkı gibiydi seni çok seviyorum kendine çok iyi bak."
