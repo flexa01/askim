@@ -3,62 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H ❤️ I - Veda</title>
+    <title>H ❤️ I - Final</title>
     <style>
         body { margin: 0; background-color: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: 'Arial', sans-serif; color: white; }
         #start-btn { position: fixed; width: 100%; height: 100%; background: #000; color: #ff69b4; border: none; z-index: 999; font-size: 22px; cursor: pointer; letter-spacing: 2px; }
         .content { text-align: center; z-index: 10; position: relative; max-width: 600px; padding: 20px; display: none; }
-        h1 { color: #ff69b4; font-size: 60px; margin: 0; text-shadow: 0 0 20px #ff1493; }
-        .foto-container { display: flex; justify-content: space-around; margin-bottom: 20px; }
-        .foto { width: 130px; height: 130px; border-radius: 50%; border: 2px solid #ff69b4; object-fit: cover; box-shadow: 0 0 20px #ff1493; }
-        .paragraf { color: #ffffff; font-size: 16px; line-height: 1.6; margin-top: 25px; opacity: 0.8; border-top: 1px solid #333; padding-top: 20px; }
-        #player { display: none; }
+        h1 { color: #ff69b4; font-size: 60px; margin: 0; text-shadow: 0 0 25px #ff1493; }
+        .kutlama { color: #ffb6c1; font-size: 22px; margin-top: 10px; font-weight: bold; }
+        .basari { color: #ff1493; font-size: 18px; margin-top: 5px; font-style: italic; text-transform: uppercase; }
+        .paragraf { color: #ffffff; font-size: 16px; line-height: 1.6; margin-top: 25px; opacity: 0.8; border-top: 1px solid #333; padding-top: 20px; font-weight: 300; }
     </style>
 </head>
 <body>
 
-    <button id="start-btn" onclick="baslat()">Son Kez Dinlemek İçin Dokun...</button>
-    <div id="player"></div>
+    <button id="start-btn" onclick="finaliBaslat()">Son Kez Dinlemek İçin Dokun...</button>
+
+    <audio id="lastSong" src="https://raw.githubusercontent.com/Anil-Can/Anil-Can/master/anlamazdın.mp3" preload="auto"></audio>
 
     <div id="ana-icerik" class="content">
-        <div class="foto-container">
-            <img src="./sol.jpg" class="foto" onerror="this.src='https://picsum.photos/200'">
-            <img src="./sag.jpg" class="foto" onerror="this.src='https://picsum.photos/201'">
-        </div>
         <h1>H ❤️ I</h1>
-        <p style="color: #ffb6c1; font-size: 22px; font-weight: bold;">2. Yılımız Kutlu Olsun</p>
-        <p style="color: #ff1493; font-size: 18px; font-style: italic;">Yeni sevgilinle başarılar sonsuza kadar.</p>
+        <p class="kutlama">2. Yılımız Kutlu Olsun</p>
+        <p class="basari">Yeni sevgilinle başarılar sonsuza kadar.</p>
         <div class="paragraf">
-            Bir iskambil falında çıkmıştık birbirimize... <br>
-            Bazen en güzel hikayeler, kupa kızı ve sinek valesi gibi beklenmedik anlarda biter. 
-            Yolun açık olsun.
+            Bazen en güzel hikayeler son bulur. İki yılın her anı bu siyah ekranda patlayan havai fişekler gibiydi; parlak, heyecan verici ama geçici. Yolun açık olsun.
         </div>
     </div>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0', width: '0',
-                videoId: 'yOfrJ_Jnqyw', // Teoman - Kupa Kızı Sinek Valesi
-                events: { 'onReady': onPlayerReady }
-            });
-        }
-        function onPlayerReady(event) { console.log("Müzik Hazır"); }
-
-        function baslat() {
+        function finaliBaslat() {
+            const audio = document.getElementById('lastSong');
             document.getElementById('start-btn').style.display = 'none';
             document.getElementById('ana-icerik').style.display = 'block';
-            
-            if (player && player.playVideo) {
-                player.setVolume(100);
-                player.playVideo();
-            }
 
+            audio.play().then(() => {
+                audio.currentTime = 128; // 2:08'e sarar
+            }).catch(e => {
+                audio.play();
+            });
+            
             setInterval(() => {
-                confetti({ particleCount: 40, spread: 80, origin: { y: 0.6 }, colors: ['#ff69b4', '#ff1493', '#ffffff'] });
+                confetti({
+                    particleCount: 40,
+                    spread: 80,
+                    origin: { y: 0.7 },
+                    colors: ['#ff69b4', '#ff1493', '#ffffff']
+                });
             }, 1500);
         }
     </script>
