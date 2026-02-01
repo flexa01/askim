@@ -2,14 +2,13 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H ❤️ I - 2. Yıl!</title>
+    <title>Veda...</title>
     <style>
         body { margin: 0; background-color: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: 'Arial', sans-serif; }
-        .content { text-align: center; z-index: 10; position: relative; pointer-events: none; }
-        /* Parlak Pembe Yazılar */
-        h1 { color: #ff69b4; font-size: 90px; margin: 0; text-shadow: 0 0 25px #ff1493, 0 0 50px #ff69b4; }
-        p { color: #ffb6c1; font-size: 30px; margin-top: 15px; font-weight: bold; text-shadow: 0 0 10px #ff1493; }
+        .content { text-align: center; z-index: 10; position: relative; }
+        h1 { color: #ff69b4; font-size: 85px; margin: 0; text-shadow: 0 0 25px #ff1493; }
+        p { color: #ffb6c1; font-size: 28px; margin-top: 15px; font-weight: bold; }
+        .vurgu { color: #ff1493; font-size: 24px; margin-top: 10px; font-style: italic; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -17,26 +16,20 @@
     <div class="content">
         <h1>H ❤️ I</h1>
         <p>2. Yılımız Kutlu Olsun</p>
+        <p class="vurgu">Yeni sevgilinle başarılar sonsuza kadar.</p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        // 1. AÇILIŞ ŞOVU: Ekranın her yerinden fışkıran fişekler
-        const duration = 15 * 1000;
-        const animationEnd = Date.now() + duration;
-        const defaults = { startVelocity: 45, spread: 360, ticks: 100, zIndex: 0 };
-
-        function randomInRange(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-
-        const interval = setInterval(function() {
-            const timeLeft = animationEnd - Date.now();
-
-            if (timeLeft <= 0) {
-                return clearInterval(interval);
-            }
-
-            const particleCount = 60 * (timeLeft / duration);
-            
-            //
+        // Havai fişekler bu son veda için patlamaya devam etsin
+        setInterval(() => {
+            confetti({
+                particleCount: 50,
+                spread: 100,
+                origin: { y: 0.6 },
+                colors: ['#ff69b4', '#ff1493', '#ffffff']
+            });
+        }, 1500);
+    </script>
+</body>
+</html>
