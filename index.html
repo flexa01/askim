@@ -10,47 +10,51 @@
         .content { text-align: center; z-index: 10; position: relative; max-width: 600px; padding: 20px; display: none; }
         h1 { color: #ff69b4; font-size: 60px; margin: 0; text-shadow: 0 0 25px #ff1493; }
         .kutlama { color: #ffb6c1; font-size: 22px; margin-top: 10px; font-weight: bold; }
-        .basari { color: #ff1493; font-size: 18px; margin-top: 5px; font-style: italic; text-transform: uppercase; }
-        .paragraf { color: #ffffff; font-size: 16px; line-height: 1.6; margin-top: 25px; opacity: 0.8; border-top: 1px solid #333; padding-top: 20px; font-weight: 300; }
+        .basari { color: #ff1493; font-size: 18px; margin-top: 5px; font-style: italic; }
+        .paragraf { color: #ffffff; font-size: 17px; line-height: 1.6; margin-top: 25px; opacity: 0.9; border-top: 1px solid #333; padding-top: 20px; }
+        #player { display: none; }
     </style>
 </head>
 <body>
 
-    <button id="start-btn" onclick="finaliBaslat()">Son Kez Dinlemek İçin Dokun...</button>
-
-    <audio id="lastSong" src="https://raw.githubusercontent.com/Anil-Can/Anil-Can/master/anlamazdın.mp3" preload="auto"></audio>
+    <button id="start-btn" onclick="baslat()">Son Kez Dinlemek İçin Dokun...</button>
+    <div id="player"></div>
 
     <div id="ana-icerik" class="content">
         <h1>H ❤️ I</h1>
         <p class="kutlama">2. Yılımız Kutlu Olsun</p>
         <p class="basari">Yeni sevgilinle başarılar sonsuza kadar.</p>
         <div class="paragraf">
-            Bazen en güzel hikayeler son bulur. İki yılın her anı bu siyah ekranda patlayan havai fişekler gibiydi; parlak, heyecan verici ama geçici. Yolun açık olsun.
+            "Bir iskambil falında çıkmıştık birbirimize... <br>
+            O güzel kupa kızıydı, sinek valesiydim bense." <br><br>
+            İki yılın her anı bu şarkı gibiydi. Kendine iyi bak seni seviyorum.
         </div>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        function finaliBaslat() {
-            const audio = document.getElementById('lastSong');
+        let player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0', width: '0',
+                videoId: 'yOfrJ_Jnqyw', // Teoman - Kupa Kızı Sinek Valesi
+                events: { 'onReady': onPlayerReady }
+            });
+        }
+        function onPlayerReady(event) { console.log("Müzik Hazır"); }
+
+        function baslat() {
             document.getElementById('start-btn').style.display = 'none';
             document.getElementById('ana-icerik').style.display = 'block';
-
-            audio.play().then(() => {
-                audio.currentTime = 128; // 2:08'e sarar
-            }).catch(e => {
-                audio.play();
-            });
             
+            if (player && player.playVideo) {
+                player.setVolume(100);
+                player.playVideo();
+            }
+
             setInterval(() => {
                 confetti({
                     particleCount: 40,
                     spread: 80,
-                    origin: { y: 0.7 },
-                    colors: ['#ff69b4', '#ff1493', '#ffffff']
-                });
-            }, 1500);
-        }
-    </script>
-</body>
-</html>
+                    origin: { y:
