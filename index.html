@@ -3,58 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H ❤️ I - Veda</title>
+    <title>Onur & Ada - 2. Yıl</title>
     <style>
-        body { margin: 0; background-color: #000; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: 'Arial', sans-serif; color: white; }
-        #start-btn { position: fixed; width: 100%; height: 100%; background: #000; color: #ff69b4; border: none; z-index: 999; font-size: 22px; cursor: pointer; letter-spacing: 2px; }
-        .content { text-align: center; z-index: 10; position: relative; max-width: 600px; padding: 20px; display: none; }
-        h1 { color: #ff69b4; font-size: 60px; margin: 0; text-shadow: 0 0 20px #ff1493; }
-        .paragraf { color: #ffffff; font-size: 16px; line-height: 1.6; margin-top: 25px; opacity: 0.8; border-top: 1px solid #333; padding-top: 20px; }
-        #player { display: none; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #4a0404; /* Şarap Kırmızısı */
+            color: #ff69b4; /* Canlı Pembe */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            border: 2px solid #ff69b4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #ff69b4;
+        }
+
+        .names {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .heart {
+            color: #ff0000;
+            font-size: 4rem;
+            animation: beat 1s infinite;
+            display: inline-block;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 500px;
+            color: #fff;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
 
-    <button id="start-btn" onclick="baslat()">Son Kez Dinlemek İçin Dokun...</button>
-    <div id="player"></div>
+    <canvas id="fireworks"></canvas>
 
-    <div id="ana-icerik" class="content">
-        <h1>H ❤️ I</h1>
-        <p style="color: #ffb6c1; font-size: 22px; font-weight: bold;">2. Yılımız Kutlu Olsun</p>
-        <p style="color: #ff1493; font-size: 18px; font-style: italic;">Yeni sevgilinle başarılar sonsuza kadar.</p>
-        <div class="paragraf">
-            Bir iskambil falında çıkmıştık birbirimize... <br>
-            Bazen en güzel hikayeler, kupa kızı ve sinek valesi gibi beklenmedik anlarda biter. 
-            Yolun açık olsun.
-        </div>
+    <div class="container">
+        <h1>2. Yılımız Kutlu Olsun</h1>
+        <div class="names">Onur <span class="heart">❤️</span> Ada</div>
+        <p>
+            Birlikte geçirdiğimiz her saniye, her gülüş ve her anı benim için paha biçilemez. 
+            Seninle geçen bu 2 yıl, hayatımın en güzel yolculuğuydu. Seni her geçen gün daha çok seviyorum. 
+            Daha nice mutlu yıllarımıza, hep el ele...
+        </p>
     </div>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script>
-        let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0', width: '0',
-                videoId: 'yOfrJ_Jnqyw', // Teoman - Kupa Kızı Sinek Valesi
-                events: { 'onReady': onPlayerReady }
-            });
-        }
-        function onPlayerReady(event) { console.log("Müzik Hazır"); }
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        function baslat() {
-            document.getElementById('start-btn').style.display = 'none';
-            document.getElementById('ana-icerik').style.display = 'block';
-            
-            if (player && player.playVideo) {
-                player.setVolume(100);
-                player.playVideo();
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velocity = {
+                    x: (Math.random() - 0.5) * 8,
+                    y: (Math.random() - 0.5) * 8
+                };
+                this.alpha = 1;
+                this.friction = 0.95;
             }
 
-            setInterval(() => {
-                confetti({ particleCount: 40, spread: 80, origin: { y: 0.6 }, colors: ['#ff69b4', '#ff1493', '#ffffff'] });
-            }, 1500);
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+
+            update() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.01;
+            }
         }
+
+        let particles = [];
+
+        function createFirework(x, y) {
+            const colors = ['#ff69b4', '#ff1493', '#ffffff', '#ff0000'];
+            for (let i = 0; i < 40; i++) {
+                particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.fillStyle = 'rgba(74, 4, 4, 0.2)'; // Arka plan izi
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, index) => {
+                if (particle.alpha > 0) {
+                    particle.update();
+                    particle.draw();
+                } else {
+                    particles.splice(index, 1);
+                }
+            });
+
+            if (Math.random() < 0.05) {
+                createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.5);
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        animate();
     </script>
 </body>
 </html>
