@@ -1,268 +1,267 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onur & Ada</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onur & Ada</title>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #4a0404;
-            color: #ff69b4;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #4a0404;
+    color: #ff69b4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
 
-        .container {
-            z-index: 10;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 50px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            border: 2px solid #ff69b4;
-            box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
-            max-width: 600px;
-            margin: 20px;
-        }
+/* ORTA KUTU */
+.container {
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 50px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    border: 2px solid #ff69b4;
+    box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
+    max-width: 600px;
+    margin: 20px;
+}
 
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 5px;
-            text-shadow: 0 0 15px #ff69b4;
-            letter-spacing: 3px;
-        }
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 5px;
+    text-shadow: 0 0 15px #ff69b4;
+    letter-spacing: 3px;
+}
 
-        .names {
-            font-size: 2.2rem;
-            font-weight: bold;
-            margin: 15px 0;
-            color: #fff;
-        }
+.names {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #fff;
+}
 
-        .heart {
-            color: #ff0000;
-            font-size: 3.5rem;
-            animation: beat 1.2s infinite;
-            display: inline-block;
-            vertical-align: middle;
-        }
+.heart {
+    color: #ff0000;
+    font-size: 3.5rem;
+    animation: beat 1.2s infinite;
+}
 
-        .message {
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: #fefefe;
-            font-style: italic;
-            margin-top: 20px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
+.message {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #fefefe;
+    font-style: italic;
+    margin-top: 20px;
+}
 
-        @keyframes beat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
+@keyframes beat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
 
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
-        /* FOTOĞRAFLAR */
+/* FOTOĞRAF FRAME */
+.photo-frame{
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    z-index: 8;
+}
 
-        .photo-frame{
-            position: fixed;
-            width: 140px;
-            height: 140px;
-            z-index: 8;
-        }
+/* FOTOĞRAF */
+.corner-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
 
-        .corner-img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 25px;
+    border: 4px solid rgba(255,255,255,0.9);
 
-            border: 4px solid rgba(255,255,255,0.9);
-            box-shadow:
-                0 0 15px rgba(255,255,255,0.6),
-                0 0 25px rgba(255,105,180,0.4),
-                inset 0 0 10px rgba(255,255,255,0.2);
-        }
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.6),
+        0 0 25px rgba(255,255,255,0.4),
+        0 0 35px rgba(255,105,180,0.25);
+}
 
-        .photo-frame::before{
-            content: "";
-            position: absolute;
-            inset: -18px;
-            border-radius: 35px;
-            background: radial-gradient(circle,
-                rgba(255,255,255,0.9),
-                rgba(255,255,255,0.3),
-                transparent 70%
-            );
-            filter: blur(6px);
-            opacity: 0.8;
-            z-index: -1;
-        }
+/* 🌹 GÜLLÜ ÇERÇEVE EFEKTİ */
+.photo-frame::before{
+    content: "";
+    position: absolute;
+    inset: -20px;
+    border-radius: 35px;
 
-        /* KONUM AYARLARI */
+    background: radial-gradient(circle,
+        rgba(255,255,255,0.9),
+        rgba(255,182,193,0.4),
+        rgba(255,255,255,0.2),
+        transparent 70%
+    );
 
-        .top-photo{
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    filter: blur(8px);
+    opacity: 0.9;
+    z-index: -1;
+}
 
-        .left-photo{
-            top: 50%;
-            left: 220px;
-            transform: translateY(-50%);
-        }
+/* KONUM */
+.top-photo{
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-        .right-photo{
-            top: 50%;
-            right: 220px;
-            transform: translateY(-50%);
-        }
+.left-photo{
+    top: 50%;
+    left: 200px;
+    transform: translateY(-50%);
+}
 
-        .bottom-photo{
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+.right-photo{
+    top: 50%;
+    right: 200px;
+    transform: translateY(-50%);
+}
 
-    </style>
+.bottom-photo{
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+</style>
 </head>
 
 <body>
 
-    <canvas id="fireworks"></canvas>
+<canvas id="fireworks"></canvas>
 
-    <!-- FOTOĞRAFLAR -->
+<!-- FOTOĞRAFLAR -->
+<div class="photo-frame top-photo">
+    <img src="foto1.png" class="corner-img">
+</div>
 
-    <div class="photo-frame top-photo">
-        <img src="foto1.png" class="corner-img">
+<div class="photo-frame left-photo">
+    <img src="foto2.png" class="corner-img">
+</div>
+
+<div class="photo-frame right-photo">
+    <img src="foto3.png" class="corner-img">
+</div>
+
+<div class="photo-frame bottom-photo">
+    <img src="foto4.png" class="corner-img">
+</div>
+
+<!-- ORTA YAZI -->
+<div class="container">
+    <h1>ADOŞŞ</h1>
+
+    <div class="names">
+        Onur <span class="heart">❤️</span> Ada
     </div>
 
-    <div class="photo-frame left-photo">
-        <img src="foto2.png" class="corner-img">
-    </div>
+    <p class="message">
+        Sen benim en derin duygum, en güzel gerçeğimsin. <br>
+        Gözlerinle ruhuma dokunduğun her an, dünyanın bütün anlamı sende toplanıyor. <br>
+        Yanında olmak, seni sevmek... <br>
+        Bu hayattaki en büyük şansım.
+    </p>
+</div>
 
-    <div class="photo-frame right-photo">
-        <img src="foto3.png" class="corner-img">
-    </div>
+<script>
+const canvas = document.getElementById('fireworks');
+const ctx = canvas.getContext('2d');
 
-    <div class="photo-frame bottom-photo">
-        <img src="foto4.png" class="corner-img">
-    </div>
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    <div class="container">
+class Particle {
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.velocity = {
+            x: (Math.random() - 0.5) * 8,
+            y: (Math.random() - 0.5) * 8
+        };
+        this.alpha = 1;
+        this.friction = 0.95;
+    }
 
-        <h1>ADOŞŞ</h1>
+    draw() {
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
 
-        <div class="names">
-            Onur <span class="heart">❤️</span> Ada
-        </div>
+    update() {
+        this.velocity.x *= this.friction;
+        this.velocity.y *= this.friction;
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.alpha -= 0.008;
+    }
+}
 
-        <p class="message">
-            Sen benim en derin duygum, en güzel gerçeğimsin. <br>
-            Gözlerinle ruhuma dokunduğun her an, dünyanın bütün anlamı sende toplanıyor. <br>
-            Yanında olmak, seni sevmek... <br>
-            Bu hayattaki en büyük şansım.
-        </p>
+let particles = [];
 
-    </div>
+function createFirework(x, y) {
+    const colors = ['#ff69b4','#ff1493','#ffffff','#ff0000','#ffd700'];
 
-    <script>
-        const canvas = document.getElementById('fireworks');
-        const ctx = canvas.getContext('2d');
+    for (let i = 0; i < 50; i++) {
+        particles.push(new Particle(
+            x,
+            y,
+            colors[Math.floor(Math.random() * colors.length)]
+        ));
+    }
+}
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+function animate() {
+    requestAnimationFrame(animate);
+    ctx.fillStyle = 'rgba(74, 4, 4, 0.2)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        class Particle {
-            constructor(x, y, color) {
-                this.x = x;
-                this.y = y;
-                this.color = color;
-                this.velocity = {
-                    x: (Math.random() - 0.5) * 8,
-                    y: (Math.random() - 0.5) * 8
-                };
-                this.alpha = 1;
-                this.friction = 0.95;
-            }
-
-            draw() {
-                ctx.globalAlpha = this.alpha;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-
-            update() {
-                this.velocity.x *= this.friction;
-                this.velocity.y *= this.friction;
-                this.x += this.velocity.x;
-                this.y += this.velocity.y;
-                this.alpha -= 0.008;
-            }
+    particles.forEach((p, i) => {
+        if (p.alpha > 0) {
+            p.update();
+            p.draw();
+        } else {
+            particles.splice(i, 1);
         }
+    });
 
-        let particles = [];
+    if (Math.random() < 0.04) {
+        createFirework(
+            Math.random() * canvas.width,
+            Math.random() * canvas.height * 0.6
+        );
+    }
+}
 
-        function createFirework(x, y) {
-            const colors = ['#ff69b4','#ff1493','#ffffff','#ff0000','#ffd700'];
-            for (let i = 0; i < 50; i++) {
-                particles.push(
-                    new Particle(
-                        x,
-                        y,
-                        colors[Math.floor(Math.random() * colors.length)]
-                    )
-                );
-            }
-        }
+animate();
 
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.fillStyle = 'rgba(74, 4, 4, 0.2)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            particles.forEach((particle, index) => {
-                if (particle.alpha > 0) {
-                    particle.update();
-                    particle.draw();
-                } else {
-                    particles.splice(index, 1);
-                }
-            });
-
-            if (Math.random() < 0.04) {
-                createFirework(
-                    Math.random() * canvas.width,
-                    Math.random() * canvas.height * 0.6
-                );
-            }
-        }
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        animate();
-    </script>
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
 
 </body>
 </html>
