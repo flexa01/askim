@@ -77,13 +77,12 @@
             height: 100%;
         }
 
-        /* FOTOĞRAF KUTUSU */
+        /* FOTOĞRAFLAR */
 
         .photo-frame{
             position: fixed;
             width: 140px;
             height: 140px;
-            border-radius: 25px;
             z-index: 8;
         }
 
@@ -92,21 +91,30 @@
             height: 100%;
             object-fit: cover;
             border-radius: 25px;
-            border: 3px solid rgba(255,255,255,0.7);
+
+            border: 4px solid rgba(255,255,255,0.9);
             box-shadow:
-                0 0 25px rgba(255,255,255,0.25),
-                0 0 20px rgba(255,105,180,0.6);
+                0 0 15px rgba(255,255,255,0.6),
+                0 0 25px rgba(255,105,180,0.4),
+                inset 0 0 10px rgba(255,255,255,0.2);
         }
 
-        /* GÜL EMOJİSİ */
-
-        .rose{
+        .photo-frame::before{
+            content: "";
             position: absolute;
-            font-size: 28px;
-            filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+            inset: -18px;
+            border-radius: 35px;
+            background: radial-gradient(circle,
+                rgba(255,255,255,0.9),
+                rgba(255,255,255,0.3),
+                transparent 70%
+            );
+            filter: blur(6px);
+            opacity: 0.8;
+            z-index: -1;
         }
 
-        /* ÜST FOTO */
+        /* KONUM AYARLARI */
 
         .top-photo{
             top: 40px;
@@ -114,25 +122,11 @@
             transform: translateX(-50%);
         }
 
-        .top-photo .rose{
-            top: -18px;
-            right: -10px;
-        }
-
-        /* SOL FOTO */
-
         .left-photo{
             top: 50%;
             left: 220px;
             transform: translateY(-50%);
         }
-
-        .left-photo .rose{
-            top: -18px;
-            left: -10px;
-        }
-
-        /* SAĞ FOTO */
 
         .right-photo{
             top: 50%;
@@ -140,21 +134,8 @@
             transform: translateY(-50%);
         }
 
-        .right-photo .rose{
-            top: -18px;
-            right: -10px;
-        }
-
-        /* ALT FOTO */
-
         .bottom-photo{
             bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .bottom-photo .rose{
-            bottom: -18px;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -166,31 +147,21 @@
 
     <canvas id="fireworks"></canvas>
 
-    <!-- ÜST FOTO -->
+    <!-- FOTOĞRAFLAR -->
 
     <div class="photo-frame top-photo">
-        <span class="rose">🤍🌹</span>
         <img src="foto1.png" class="corner-img">
     </div>
 
-    <!-- SOL FOTO -->
-
     <div class="photo-frame left-photo">
-        <span class="rose">🤍🌹</span>
         <img src="foto2.png" class="corner-img">
     </div>
 
-    <!-- SAĞ FOTO -->
-
     <div class="photo-frame right-photo">
-        <span class="rose">🤍🌹</span>
         <img src="foto3.png" class="corner-img">
     </div>
 
-    <!-- ALT FOTO -->
-
     <div class="photo-frame bottom-photo">
-        <span class="rose">🤍🌹</span>
         <img src="foto4.png" class="corner-img">
     </div>
 
@@ -212,7 +183,6 @@
     </div>
 
     <script>
-
         const canvas = document.getElementById('fireworks');
         const ctx = canvas.getContext('2d');
 
@@ -220,44 +190,31 @@
         canvas.height = window.innerHeight;
 
         class Particle {
-
             constructor(x, y, color) {
-
                 this.x = x;
                 this.y = y;
-
                 this.color = color;
-
                 this.velocity = {
                     x: (Math.random() - 0.5) * 8,
                     y: (Math.random() - 0.5) * 8
                 };
-
                 this.alpha = 1;
                 this.friction = 0.95;
             }
 
             draw() {
-
                 ctx.globalAlpha = this.alpha;
-
                 ctx.beginPath();
-
                 ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-
                 ctx.fillStyle = this.color;
-
                 ctx.fill();
             }
 
             update() {
-
                 this.velocity.x *= this.friction;
                 this.velocity.y *= this.friction;
-
                 this.x += this.velocity.x;
                 this.y += this.velocity.y;
-
                 this.alpha -= 0.008;
             }
         }
@@ -265,19 +222,9 @@
         let particles = [];
 
         function createFirework(x, y) {
-
-            const colors = [
-                '#ff69b4',
-                '#ff1493',
-                '#ffffff',
-                '#ff0000',
-                '#ffd700'
-            ];
-
+            const colors = ['#ff69b4','#ff1493','#ffffff','#ff0000','#ffd700'];
             for (let i = 0; i < 50; i++) {
-
                 particles.push(
-
                     new Particle(
                         x,
                         y,
@@ -288,29 +235,20 @@
         }
 
         function animate() {
-
             requestAnimationFrame(animate);
-
             ctx.fillStyle = 'rgba(74, 4, 4, 0.2)';
-
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach((particle, index) => {
-
                 if (particle.alpha > 0) {
-
                     particle.update();
-
                     particle.draw();
-
                 } else {
-
                     particles.splice(index, 1);
                 }
             });
 
             if (Math.random() < 0.04) {
-
                 createFirework(
                     Math.random() * canvas.width,
                     Math.random() * canvas.height * 0.6
@@ -319,13 +257,11 @@
         }
 
         window.addEventListener('resize', () => {
-
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
 
         animate();
-
     </script>
 
 </body>
