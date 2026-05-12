@@ -22,42 +22,49 @@
         .container {
             z-index: 10;
             background: rgba(0, 0, 0, 0.4);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(8px);
+            padding: 50px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
             border: 2px solid #ff69b4;
-            box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
+            max-width: 600px; /* Yazının orantılı durması için genişlik sınırı */
+            margin: 20px;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #ff69b4;
+            font-size: 3.5rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px #ff69b4;
+            letter-spacing: 3px;
         }
 
         .names {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: bold;
-            margin: 20px 0;
+            margin: 15px 0;
+            color: #fff;
         }
 
         .heart {
             color: #ff0000;
-            font-size: 4rem;
-            animation: beat 1s infinite;
+            font-size: 3.5rem;
+            animation: beat 1.2s infinite;
             display: inline-block;
+            vertical-align: middle;
         }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            max-width: 500px;
-            color: #fff;
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.8; /* Satır aralığı daha orantılı */
+            color: #fefefe;
+            font-style: italic;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         @keyframes beat {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
 
@@ -75,12 +82,13 @@
     <canvas id="fireworks"></canvas>
 
     <div class="container">
-        <h1>Seni Çok Seviyorum</h1>
+        <h1>ADOŞŞ</h1>
         <div class="names">Onur <span class="heart">❤️</span> Ada</div>
-        <p>
-            Birlikte geçirdiğimiz her saniye, her gülüş ve her anı benim için paha biçilemez. 
-            Hayatımdaki varlığın, en büyük mutluluğum. Seninle geçen her gün bir kutlama tadında. 
-            Daha nice mutlu anılara, hep el ele...
+        <p class="message">
+            Sen benim en derin duygum, en güzel gerçeğimsin. <br>
+            Gözlerinle ruhuma dokunduğun her an, dünyanın bütün anlamı sende toplanıyor. <br>
+            Yanında olmak, seni sevmek... <br>
+            Bu hayattaki en büyük şansım.
         </p>
     </div>
 
@@ -116,15 +124,15 @@
                 this.velocity.y *= this.friction;
                 this.x += this.velocity.x;
                 this.y += this.velocity.y;
-                this.alpha -= 0.01;
+                this.alpha -= 0.008;
             }
         }
 
         let particles = [];
 
         function createFirework(x, y) {
-            const colors = ['#ff69b4', '#ff1493', '#ffffff', '#ff0000'];
-            for (let i = 0; i < 40; i++) {
+            const colors = ['#ff69b4', '#ff1493', '#ffffff', '#ff0000', '#ffd700'];
+            for (let i = 0; i < 50; i++) {
                 particles.push(new Particle(x, y, colors[Math.floor(Math.random() * colors.length)]));
             }
         }
@@ -143,8 +151,8 @@
                 }
             });
 
-            if (Math.random() < 0.05) {
-                createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.5);
+            if (Math.random() < 0.04) {
+                createFirework(Math.random() * canvas.width, Math.random() * canvas.height * 0.6);
             }
         }
 
