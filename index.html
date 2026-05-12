@@ -31,20 +31,16 @@ html,body{
   color:white;
 }
 
-/* BACKGROUND */
-
 body::before{
   content:'';
   position:fixed;
   inset:0;
   background:
-  radial-gradient(circle at 20% 20%, rgba(255,60,120,.18), transparent 30%),
-  radial-gradient(circle at 80% 30%, rgba(255,180,80,.12), transparent 30%),
-  radial-gradient(circle at 50% 80%, rgba(255,50,100,.12), transparent 35%);
+    radial-gradient(circle at 20% 20%, rgba(255,60,120,.18), transparent 30%),
+    radial-gradient(circle at 80% 30%, rgba(255,180,80,.12), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(255,50,100,.12), transparent 35%);
   z-index:0;
 }
-
-/* FLOAT PARTICLES */
 
 canvas{
   position:fixed;
@@ -56,7 +52,7 @@ canvas{
 #pCanvas{z-index:2;}
 #oCanvas{z-index:4;}
 
-/* PHOTOS */
+/* ── PHOTOS ── */
 
 .photo-orbit{
   position:fixed;
@@ -67,19 +63,17 @@ canvas{
   width:100%;
   height:100%;
   overflow:hidden;
-  border-radius:22px;
+  border-radius:18px;
   position:relative;
   backdrop-filter:blur(10px);
   border:1px solid rgba(255,255,255,.12);
   box-shadow:
-  0 10px 40px rgba(0,0,0,.45),
-  0 0 30px rgba(255,80,120,.18);
+    0 10px 40px rgba(0,0,0,.45),
+    0 0 24px rgba(255,80,120,.18);
   transition:.45s;
 }
 
-.photo-frame:hover{
-  transform:scale(1.07) !important;
-}
+.photo-frame:hover{ transform:scale(1.06) !important; }
 
 .photo-frame img{
   width:100%;
@@ -88,68 +82,45 @@ canvas{
   display:block;
 }
 
-.photo-frame::after{
-  content:'';
-  position:absolute;
-  inset:-2px;
-  border-radius:24px;
-  background:
-  linear-gradient(135deg,
-  rgba(255,255,255,.18),
-  rgba(255,255,255,0),
-  rgba(255,120,170,.18));
-  z-index:-1;
-}
+/* ── CORNER POSITIONS ── */
 
 /* SOL ÜST */
-
 .orbit-1{
-  top:28px;
-  left:28px;
-  width:180px;
-  height:230px;
+  top:18px;
+  left:18px;
+  width:min(170px, 26vw);
+  height:min(215px, 33vw);
 }
+.orbit-1 .photo-frame{ transform:rotate(-7deg); }
 
-.orbit-1 .photo-frame{
-  transform:rotate(-8deg);
-}
-
+/* SAĞ ÜST */
 .orbit-2{
-  top:82px;
-  left:120px;
-  width:180px;
-  height:230px;
+  top:18px;
+  right:18px;
+  width:min(170px, 26vw);
+  height:min(215px, 33vw);
 }
+.orbit-2 .photo-frame{ transform:rotate(7deg); }
 
-.orbit-2 .photo-frame{
-  transform:rotate(7deg);
+/* SOL ALT */
+.orbit-3{
+  bottom:18px;
+  left:18px;
+  width:min(170px, 26vw);
+  height:min(215px, 33vw);
 }
+.orbit-3 .photo-frame{ transform:rotate(7deg); }
 
 /* SAĞ ALT */
-
-.orbit-3{
-  bottom:82px;
-  right:120px;
-  width:180px;
-  height:230px;
-}
-
-.orbit-3 .photo-frame{
-  transform:rotate(-7deg);
-}
-
 .orbit-4{
-  bottom:28px;
-  right:28px;
-  width:180px;
-  height:230px;
+  bottom:18px;
+  right:18px;
+  width:min(170px, 26vw);
+  height:min(215px, 33vw);
 }
+.orbit-4 .photo-frame{ transform:rotate(-7deg); }
 
-.orbit-4 .photo-frame{
-  transform:rotate(8deg);
-}
-
-/* CENTER CARD */
+/* ── CENTER CARD ── */
 
 .center-stage{
   position:fixed;
@@ -157,152 +128,132 @@ canvas{
   left:50%;
   transform:translate(-50%,-50%);
   z-index:10;
-  width:min(540px,92vw);
+  /* Genişlik: kenar fotoğrafların içine taşmasın */
+  width:min(460px, 44vw);
 }
 
 .card{
   position:relative;
-  padding:42px 30px;
-  border-radius:34px;
+  padding:36px 28px;
+  border-radius:30px;
   background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.08);
   backdrop-filter:blur(28px);
   overflow:hidden;
   text-align:center;
   box-shadow:
-  0 20px 60px rgba(0,0,0,.45),
-  inset 0 0 80px rgba(255,70,120,.04);
+    0 20px 60px rgba(0,0,0,.45),
+    inset 0 0 80px rgba(255,70,120,.04);
 }
 
 .card::before{
   content:'';
   position:absolute;
   inset:0;
-  background:
-  linear-gradient(135deg,
-  rgba(255,255,255,.05),
-  transparent 40%);
+  background:linear-gradient(135deg, rgba(255,255,255,.05), transparent 40%);
   pointer-events:none;
 }
 
 .heart{
-  font-size:58px;
-  margin-bottom:12px;
+  font-size:46px;
+  margin-bottom:10px;
   animation:heartBeat 1.7s infinite;
-  filter:drop-shadow(0 0 18px rgba(255,70,120,.8));
+  filter:drop-shadow(0 0 16px rgba(255,70,120,.8));
 }
 
 @keyframes heartBeat{
-  0%{transform:scale(1);}
-  15%{transform:scale(1.15);}
-  30%{transform:scale(1);}
-  45%{transform:scale(1.1);}
-  100%{transform:scale(1);}
+  0%  { transform:scale(1); }
+  15% { transform:scale(1.15); }
+  30% { transform:scale(1); }
+  45% { transform:scale(1.1); }
+  100%{ transform:scale(1); }
 }
 
 .headline{
-  font-size:3rem;
+  font-size:clamp(1.6rem, 4vw, 3rem);
   font-family:'Playfair Display',serif;
-  background:linear-gradient(135deg,var(--gold),white,var(--rose2));
+  background:linear-gradient(135deg, var(--gold), white, var(--rose2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 .subtitle{
   color:rgba(255,255,255,.55);
-  letter-spacing:.25em;
-  font-size:.72rem;
+  letter-spacing:.22em;
+  font-size:.68rem;
   text-transform:uppercase;
-  margin-bottom:25px;
+  margin-bottom:18px;
 }
 
 .names{
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:14px;
-  margin-bottom:25px;
+  gap:12px;
+  margin-bottom:18px;
 }
 
 .names span{
-  font-size:2rem;
+  font-size:clamp(1.3rem, 3vw, 2rem);
   font-family:'Playfair Display',serif;
 }
 
 .divider{
   width:100%;
   height:1px;
-  background:
-  linear-gradient(to right,
-  transparent,
-  rgba(255,255,255,.45),
-  transparent);
-  margin:22px 0;
+  background:linear-gradient(to right, transparent, rgba(255,255,255,.45), transparent);
+  margin:16px 0;
 }
 
 .message{
-  line-height:1.9;
-  font-size:1.2rem;
+  line-height:1.8;
+  font-size:clamp(.85rem, 2vw, 1.15rem);
   color:rgba(255,255,255,.88);
 }
 
-.highlight{
-  color:var(--rose2);
-}
+.highlight{ color:var(--rose2); }
 
 .signature{
-  margin-top:24px;
-  font-size:.72rem;
-  letter-spacing:.25em;
+  margin-top:18px;
+  font-size:.65rem;
+  letter-spacing:.22em;
   color:rgba(255,255,255,.35);
   text-transform:uppercase;
 }
 
-/* MOBILE */
+/* ── MOBILE (dar ekran) ── */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
-  .orbit-1,
-  .orbit-2,
-  .orbit-3,
-  .orbit-4{
-    width:31vw;
-    height:39vw;
+  /* Fotoğraflar: 4 köşede sabit, küçük */
+  .orbit-1, .orbit-2, .orbit-3, .orbit-4{
+    width:28vw;
+    height:36vw;
   }
 
-  .orbit-1{
-    top:10px;
-    left:8px;
+  /* Kart: fotoğrafların arasındaki boşluğa sığsın */
+  .center-stage{
+    width:38vw;   /* fotoğraf (28vw) + boşluk = ~38vw orta alan */
   }
 
-  .orbit-2{
-    top:48px;
-    left:24vw;
-  }
+  /* Eğer ekran çok dardaysa yazıları daha da küçült */
+  .heart{ font-size:32px; }
+  .subtitle{ display:none; }
+  .signature{ display:none; }
+  .divider{ margin:10px 0; }
+  .card{ padding:18px 12px; border-radius:20px; }
+  .message{ font-size:.72rem; line-height:1.6; }
+  .names{ gap:6px; }
+}
 
-  .orbit-3{
-    bottom:48px;
-    right:24vw;
+/* Çok küçük ekranlar (iPhone SE vb.) */
+@media(max-width:380px){
+  .orbit-1, .orbit-2, .orbit-3, .orbit-4{
+    width:27vw;
+    height:34vw;
   }
-
-  .orbit-4{
-    bottom:10px;
-    right:8px;
-  }
-
-  .headline{
-    font-size:2.3rem;
-  }
-
-  .message{
-    font-size:1rem;
-  }
-
-  .card{
-    padding:34px 22px;
-  }
-
+  .center-stage{ width:40vw; }
 }
 </style>
 </head>
@@ -313,34 +264,35 @@ canvas{
 <canvas id="pCanvas"></canvas>
 <canvas id="oCanvas"></canvas>
 
-<!-- FOTOĞRAFLAR -->
-
+<!-- SOL ÜST -->
 <div class="photo-orbit orbit-1">
   <div class="photo-frame">
-    <img src="foto1.png">
+    <img src="foto1.png" alt="">
   </div>
 </div>
 
+<!-- SAĞ ÜST -->
 <div class="photo-orbit orbit-2">
   <div class="photo-frame">
-    <img src="foto2.png">
+    <img src="foto2.png" alt="">
   </div>
 </div>
 
+<!-- SOL ALT -->
 <div class="photo-orbit orbit-3">
   <div class="photo-frame">
-    <img src="foto3.png">
+    <img src="foto3.png" alt="">
   </div>
 </div>
 
+<!-- SAĞ ALT -->
 <div class="photo-orbit orbit-4">
   <div class="photo-frame">
-    <img src="foto4.png">
+    <img src="foto4.png" alt="">
   </div>
 </div>
 
 <!-- CENTER -->
-
 <div class="center-stage">
   <div class="card">
 
@@ -348,9 +300,7 @@ canvas{
 
     <h1 class="headline">ADOŞŞ</h1>
 
-    <div class="subtitle">
-      forever & always
-    </div>
+    <div class="subtitle">forever & always</div>
 
     <div class="names">
       <span>Onur</span>
@@ -371,127 +321,90 @@ canvas{
       Bu hayattaki <span class="highlight">en büyük şansım.</span>
     </div>
 
-    <div class="signature">
-      ✦ ONUR TARAFINDAN ADA'YA ✦
-    </div>
+    <div class="signature">✦ ONUR TARAFINDAN ADA'YA ✦</div>
 
   </div>
 </div>
 
 <script>
-const bgC=document.getElementById('bgCanvas');
-const pC=document.getElementById('pCanvas');
-const oC=document.getElementById('oCanvas');
+const bgC = document.getElementById('bgCanvas');
+const pC  = document.getElementById('pCanvas');
+const oC  = document.getElementById('oCanvas');
+const bgX = bgC.getContext('2d');
+const pX  = pC.getContext('2d');
+const oX  = oC.getContext('2d');
 
-const bgX=bgC.getContext('2d');
-const pX=pC.getContext('2d');
-const oX=oC.getContext('2d');
-
-let W,H;
+let W, H;
 
 function resize(){
-  W=bgC.width=pC.width=oC.width=innerWidth;
-  H=bgC.height=pC.height=oC.height=innerHeight;
+  W = bgC.width = pC.width = oC.width = innerWidth;
+  H = bgC.height = pC.height = oC.height = innerHeight;
 }
 
 resize();
-addEventListener('resize',resize);
-
-/* PARTICLES */
+addEventListener('resize', resize);
 
 class Particle{
-  constructor(){
-    this.reset();
-  }
-
+  constructor(){ this.reset(); }
   reset(){
-    this.x=Math.random()*W;
-    this.y=Math.random()*H;
-    this.r=Math.random()*2.5+.5;
-    this.a=Math.random()*0.6+.2;
-    this.vy=Math.random()*-.8-.2;
+    this.x  = Math.random() * W;
+    this.y  = Math.random() * H;
+    this.r  = Math.random() * 2.5 + .5;
+    this.a  = Math.random() * 0.6 + .2;
+    this.vy = Math.random() * -.8 - .2;
   }
-
   update(){
-    this.y+=this.vy;
-
-    if(this.y<-10){
-      this.y=H+10;
-      this.x=Math.random()*W;
-    }
+    this.y += this.vy;
+    if(this.y < -10){ this.y = H + 10; this.x = Math.random() * W; }
   }
-
   draw(){
     pX.beginPath();
-    pX.arc(this.x,this.y,this.r,0,Math.PI*2);
-    pX.fillStyle=`rgba(255,255,255,${this.a})`;
+    pX.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    pX.fillStyle = `rgba(255,255,255,${this.a})`;
     pX.fill();
   }
 }
 
-const particles=[];
+const particles = [];
+for(let i = 0; i < 120; i++) particles.push(new Particle());
 
-for(let i=0;i<120;i++){
-  particles.push(new Particle());
-}
+let hearts = [];
 
-/* CLICK HEARTS */
-
-let hearts=[];
-
-function spawnHearts(x,y){
-
-  for(let i=0;i<8;i++){
-
+function spawnHearts(x, y){
+  for(let i = 0; i < 8; i++){
     hearts.push({
-      x:x,
-      y:y,
-      vx:(Math.random()-.5)*3,
-      vy:-(Math.random()*3+2),
-      life:1,
-      size:Math.random()*18+10
+      x, y,
+      vx: (Math.random() - .5) * 3,
+      vy: -(Math.random() * 3 + 2),
+      life: 1,
+      size: Math.random() * 18 + 10
     });
-
   }
-
 }
 
-addEventListener('click',e=>{
-  spawnHearts(e.clientX,e.clientY);
-});
-
-addEventListener('touchstart',e=>{
-  const t=e.touches[0];
-  spawnHearts(t.clientX,t.clientY);
-},{passive:true});
+addEventListener('click', e => spawnHearts(e.clientX, e.clientY));
+addEventListener('touchstart', e => {
+  const t = e.touches[0];
+  spawnHearts(t.clientX, t.clientY);
+}, { passive: true });
 
 function animate(){
-
   requestAnimationFrame(animate);
+  pX.clearRect(0, 0, W, H);
+  oX.clearRect(0, 0, W, H);
 
-  pX.clearRect(0,0,W,H);
-  oX.clearRect(0,0,W,H);
+  particles.forEach(p => { p.update(); p.draw(); });
 
-  particles.forEach(p=>{
-    p.update();
-    p.draw();
+  hearts.forEach(h => {
+    oX.globalAlpha = h.life;
+    oX.font = `${h.size}px serif`;
+    oX.fillText('💗', h.x, h.y);
+    h.x += h.vx;
+    h.y += h.vy;
+    h.life -= 0.02;
   });
 
-  hearts.forEach(h=>{
-
-    oX.globalAlpha=h.life;
-    oX.font=`${h.size}px serif`;
-    oX.fillText('💗',h.x,h.y);
-
-    h.x+=h.vx;
-    h.y+=h.vy;
-
-    h.life-=0.02;
-
-  });
-
-  hearts=hearts.filter(h=>h.life>0);
-
+  hearts = hearts.filter(h => h.life > 0);
 }
 
 animate();
