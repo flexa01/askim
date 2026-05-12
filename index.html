@@ -77,20 +77,36 @@
             height: 100%;
         }
 
-        /* FOTOĞRAFLAR */
+        /* FOTOĞRAF KUTUSU */
 
-        .corner-img{
+        .photo-frame{
             position: fixed;
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 20px;
-            border: 3px solid #ff69b4;
-            box-shadow: 0 0 20px rgba(255,105,180,0.7);
+            width: 140px;
+            height: 140px;
+            border-radius: 25px;
             z-index: 8;
         }
 
-        /* ÜST ORTA */
+        .corner-img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 25px;
+            border: 3px solid rgba(255,255,255,0.7);
+            box-shadow:
+                0 0 25px rgba(255,255,255,0.25),
+                0 0 20px rgba(255,105,180,0.6);
+        }
+
+        /* GÜL EMOJİSİ */
+
+        .rose{
+            position: absolute;
+            font-size: 28px;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.6));
+        }
+
+        /* ÜST FOTO */
 
         .top-photo{
             top: 40px;
@@ -98,7 +114,12 @@
             transform: translateX(-50%);
         }
 
-        /* SOL ORTA */
+        .top-photo .rose{
+            top: -18px;
+            right: -10px;
+        }
+
+        /* SOL FOTO */
 
         .left-photo{
             top: 50%;
@@ -106,7 +127,12 @@
             transform: translateY(-50%);
         }
 
-        /* SAĞ ORTA */
+        .left-photo .rose{
+            top: -18px;
+            left: -10px;
+        }
+
+        /* SAĞ FOTO */
 
         .right-photo{
             top: 50%;
@@ -114,10 +140,21 @@
             transform: translateY(-50%);
         }
 
-        /* ALT ORTA */
+        .right-photo .rose{
+            top: -18px;
+            right: -10px;
+        }
+
+        /* ALT FOTO */
 
         .bottom-photo{
             bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bottom-photo .rose{
+            bottom: -18px;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -129,15 +166,33 @@
 
     <canvas id="fireworks"></canvas>
 
-    <!-- FOTOĞRAFLAR -->
+    <!-- ÜST FOTO -->
 
-    <img src="foto1.png" class="corner-img top-photo">
+    <div class="photo-frame top-photo">
+        <span class="rose">🤍🌹</span>
+        <img src="foto1.png" class="corner-img">
+    </div>
 
-    <img src="foto2.png" class="corner-img left-photo">
+    <!-- SOL FOTO -->
 
-    <img src="foto3.png" class="corner-img right-photo">
+    <div class="photo-frame left-photo">
+        <span class="rose">🤍🌹</span>
+        <img src="foto2.png" class="corner-img">
+    </div>
 
-    <img src="foto4.png" class="corner-img bottom-photo">
+    <!-- SAĞ FOTO -->
+
+    <div class="photo-frame right-photo">
+        <span class="rose">🤍🌹</span>
+        <img src="foto3.png" class="corner-img">
+    </div>
+
+    <!-- ALT FOTO -->
+
+    <div class="photo-frame bottom-photo">
+        <span class="rose">🤍🌹</span>
+        <img src="foto4.png" class="corner-img">
+    </div>
 
     <div class="container">
 
