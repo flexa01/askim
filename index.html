@@ -90,40 +90,57 @@
             z-index: 8;
         }
 
-        .top-left{
-            top: 20px;
-            left: 20px;
+        /* ÜST ORTA */
+
+        .top-photo{
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .top-right{
-            top: 20px;
-            right: 20px;
+        /* SOL ORTA */
+
+        .left-photo{
+            top: 50%;
+            left: 220px;
+            transform: translateY(-50%);
         }
 
-        .bottom-left{
-            bottom: 20px;
-            left: 20px;
+        /* SAĞ ORTA */
+
+        .right-photo{
+            top: 50%;
+            right: 220px;
+            transform: translateY(-50%);
         }
 
-        .bottom-right{
-            bottom: 20px;
-            right: 20px;
+        /* ALT ORTA */
+
+        .bottom-photo{
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
     </style>
 </head>
+
 <body>
 
     <canvas id="fireworks"></canvas>
 
     <!-- FOTOĞRAFLAR -->
 
-    <img src="foto1.png" class="corner-img top-left">
-    <img src="foto2.png" class="corner-img top-right">
-    <img src="foto3.png" class="corner-img bottom-left">
-    <img src="foto4.png" class="corner-img bottom-right">
+    <img src="foto1.png" class="corner-img top-photo">
+
+    <img src="foto2.png" class="corner-img left-photo">
+
+    <img src="foto3.png" class="corner-img right-photo">
+
+    <img src="foto4.png" class="corner-img bottom-photo">
 
     <div class="container">
+
         <h1>ADOŞŞ</h1>
 
         <div class="names">
@@ -136,9 +153,11 @@
             Yanında olmak, seni sevmek... <br>
             Bu hayattaki en büyük şansım.
         </p>
+
     </div>
 
     <script>
+
         const canvas = document.getElementById('fireworks');
         const ctx = canvas.getContext('2d');
 
@@ -146,7 +165,9 @@
         canvas.height = window.innerHeight;
 
         class Particle {
+
             constructor(x, y, color) {
+
                 this.x = x;
                 this.y = y;
 
@@ -162,16 +183,20 @@
             }
 
             draw() {
+
                 ctx.globalAlpha = this.alpha;
 
                 ctx.beginPath();
+
                 ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
 
                 ctx.fillStyle = this.color;
+
                 ctx.fill();
             }
 
             update() {
+
                 this.velocity.x *= this.friction;
                 this.velocity.y *= this.friction;
 
@@ -185,6 +210,7 @@
         let particles = [];
 
         function createFirework(x, y) {
+
             const colors = [
                 '#ff69b4',
                 '#ff1493',
@@ -194,7 +220,9 @@
             ];
 
             for (let i = 0; i < 50; i++) {
+
                 particles.push(
+
                     new Particle(
                         x,
                         y,
@@ -205,21 +233,29 @@
         }
 
         function animate() {
+
             requestAnimationFrame(animate);
 
             ctx.fillStyle = 'rgba(74, 4, 4, 0.2)';
+
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach((particle, index) => {
+
                 if (particle.alpha > 0) {
+
                     particle.update();
+
                     particle.draw();
+
                 } else {
+
                     particles.splice(index, 1);
                 }
             });
 
             if (Math.random() < 0.04) {
+
                 createFirework(
                     Math.random() * canvas.width,
                     Math.random() * canvas.height * 0.6
@@ -228,11 +264,13 @@
         }
 
         window.addEventListener('resize', () => {
+
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
 
         animate();
+
     </script>
 
 </body>
