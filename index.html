@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onur & Ada - 2. Yıl</title>
+    <title>Onur & Ada</title>
     <style>
         body {
             margin: 0;
@@ -21,16 +21,16 @@
 
         .container {
             z-index: 10;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             padding: 40px;
             border-radius: 20px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
             border: 2px solid #ff69b4;
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.4);
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 10px;
             text-shadow: 0 0 10px #ff69b4;
         }
@@ -75,12 +75,12 @@
     <canvas id="fireworks"></canvas>
 
     <div class="container">
-        <h1>2. Yılımız Kutlu Olsun</h1>
+        <h1>Seni Çok Seviyorum</h1>
         <div class="names">Onur <span class="heart">❤️</span> Ada</div>
         <p>
             Birlikte geçirdiğimiz her saniye, her gülüş ve her anı benim için paha biçilemez. 
-            Seninle geçen bu 2 yıl, hayatımın en güzel yolculuğuydu. Seni her geçen gün daha çok seviyorum. 
-            Daha nice mutlu yıllarımıza, hep el ele...
+            Hayatımdaki varlığın, en büyük mutluluğum. Seninle geçen her gün bir kutlama tadında. 
+            Daha nice mutlu anılara, hep el ele...
         </p>
     </div>
 
@@ -131,7 +131,7 @@
 
         function animate() {
             requestAnimationFrame(animate);
-            ctx.fillStyle = 'rgba(74, 4, 4, 0.2)'; // Arka plan izi
+            ctx.fillStyle = 'rgba(74, 4, 4, 0.2)'; 
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach((particle, index) => {
